@@ -1,6 +1,6 @@
 var ipc = require('ipc')
 angular.module('ips')
-  .factory('Server', function () {
+  .factory('Server', function ($rootScope) {
     var turnOn = function () {
       ipc.send('turnOnServer')
     }
@@ -10,8 +10,16 @@ angular.module('ips')
     }
 
     var checkStatus = function () {
-      return ipc.sendSync('checkStatus')
+      return ipc.sendSync('checkServerStatus')
     }
+
+    ipc.on('serverTurnedOn', function () {
+      $rootScope.$broadcast('serverTurnedOn')
+    })
+
+    ipc.on('serverTurnedOff', function () {
+      $rootScope.$broadcast('serverTurnedOff')
+    })
 
     return {
       turnOn: turnOn,

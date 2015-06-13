@@ -1,21 +1,19 @@
-var app = require('app');  // Module to control application life.
-var BrowserWindow = require('browser-window');  // Module to create native browser window.
+var app = require('app')
+var BrowserWindow = require('browser-window')
+require('crash-reporter').start()
 
-require('crash-reporter').start();
-
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the javascript object is GCed.
-var mainWindow = null;
+var mainWindow = null
 var ipc = require('ipc')
+var server = require('./server')
 
-app.on('window-all-closed', function() {
-  if (process.platform != 'darwin') {
-    app.quit();
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') {
+    app.quit()
   }
-});
+})
 
-app.on('ready', function() {
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+app.on('ready', function () {
+  mainWindow = new BrowserWindow({width: 800, height: 600})
 
   mainWindow.loadUrl('file://' + __dirname + '/app/index.html')
 
@@ -25,12 +23,19 @@ app.on('ready', function() {
     mainWindow = null
   })
 
-  ipc.on('turnOnServer', function () {
+  ipc.on('turnOnServer', function (e) {
     console.log('requested turn on')
+    server.turnOn()
+    e.sender.send('serverTurnedOn')
   })
 
-  ipc.on('turnOffServer', function () {
+  ipc.on('turnOffServer', function (e) {
     console.log('requested turn off')
+    server.turnOff()
+    e.sender.send('serverTurnedOff')
   })
 
+  ipc.on('checkServerStatus', function (e) {
+    e.returnValue = server.checkStatus()
+  })
 })
