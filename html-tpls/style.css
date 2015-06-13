@@ -1,0 +1,187 @@
+body{
+	/*background-image: url("img/IPS.jpg");*/
+    background-color: #000;
+	width: 100%;
+}
+
+.scale {
+    width: 400px;
+    height: 300px;
+    
+}
+.scale img {
+    width: 290px;
+  height: 55px;
+    -moz-transition: -moz-transform 0.5s linear;
+    -webkit-transition: -webkit-transform 0.5s linear;
+    -o-transition: -o-transform 0.5s linear;
+    -ms-transition: -ms-transform 0.5s linear;
+    transition: transform 0.5s linear;
+}
+.scale img:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+
+.large-header {
+  position: relative;
+  width: 100%;
+  background-image: url("img/InnerParty.png");
+  /* background-image: url("http://static.tumblr.com/1ccbc9v/ng3ncd339/cd-intro-bg.jpg"); */
+  overflow: hidden;
+  background-size: 500px;
+  background-repeat: no-repeat;
+  background-position: center 200px;
+  z-index: 1;
+}
+
+h1 img{
+    position: absolute;
+    margin:10px;
+    width:80px;
+}
+
+a.create {
+    position: absolute;
+    width: 100%;
+    font-size: 2rem;
+    text-align: center;
+    margin: 0 auto;
+    top:300px;
+    color:#fff;
+}
+
+
+
+a.join {
+    position: absolute;
+    width: 100%;
+    font-size: 2rem;
+    text-align: center;
+    margin: 20px auto;
+    top:350px;
+    color:#fff;
+}
+
+
+
+
+/*CreateNew*/
+
+.createHead{
+   
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #1b2e3b;
+    padding: 10px;
+}
+
+.key a {
+    margin-left: 10px;
+    margin-top: 10px;
+    position: absolute;
+    display: block;
+    width: 30%;
+    height: 25%;
+    background: url("img/key.png") no-repeat;
+    -webkit-transition: 0.3s ease-in-out;
+       -moz-transition: 0.3s ease-in-out;
+         -o-transition: 0.3s ease-in-out;
+            transition: 0.3s ease-in-out;
+}
+.key a:hover {
+    background-position: 0 bottom;
+}
+
+.wifi{
+    width: 415px;
+    height:79px;
+margin:20px auto;
+background-image: url("img/wifiImg.png");
+   
+}
+
+
+.wifi p{
+
+     margin: 25px 0 0 140px;
+     padding-top:25px;
+    font-size: 30px;
+    color:#fff;
+    
+}
+
+
+
+.IP{
+   width: 415px;
+    height:79px;
+margin:20px auto;
+background-image: url("img/IP.png");
+
+}
+
+
+
+
+.IP p{
+       margin: 25px 0 0 120px;
+     padding-top:25px;
+    font-size: 30px;
+    color:#fff;
+}
+
+
+
+
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/* Info */
+
+/* Demo */
+
+.quotes {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    left: 0;
+    top: 300px;
+}
+
+.quotes article {
+    border-bottom: 1px dashed #ddd;
+    text-align: justify;
+    line-height: 1.8;
+    background: #fff;
+    max-width: 620px;
+    font-size: 14px;
+    padding: 80px 40px;
+    margin: 0 auto;
+    width: 600px;
+    color: #333;
+}
+
+.quotes article em {
+    font-style: normal;
+    font-size: 12px;
+    color: #666;
+}
+
+.quotes article em:before {
+    content: '~';
+    margin: 0 10px;
+}
+
+
+
