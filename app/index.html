@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="ips">
+  <head>
+    <meta charset="utf-8">
+    <title>INNER PARTY SYSTEM!!</title>
+  </head>
+  <body>
+    <div ng-controller="AppController as app">
+      <button type="button" name="button" ng-click="app.turnOnServer()">Create Party</button>
+      <button type="button" name="button" ng-click="app.turnOffServer()">Enter Party</button>
+    </div>
+
+    <script src="vendor/angular.js"></script>
+
+    <script src="app.js"></script>
+    <script src="services/Server.js"></script>
+    <script src="controllers/AppController.js"></script>
+
+  </body>
+</html>
