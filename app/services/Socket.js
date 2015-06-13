@@ -1,12 +1,17 @@
 angular.module('ips')
-  .factory('Socket', function () {
+  .factory('Socket', function (hostname) {
     var socket = null
 
     var connect = function (url) {
-      socket = io.connect('http://' + url + ':8080', {'forceNew': true});
+      socket = io.connect('http://' + url + ':8080', {'forceNew': true})
       socket.on('news', function (data) {
         console.log(data)
         socket.emit('msg', { my: 'data' })
+        socket.emit('registerName', { name: hostname })
+      })
+
+      socket.on('userUpdated', function (users) {
+        console.log(users)
       })
     }
 

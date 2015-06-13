@@ -7,7 +7,9 @@ var enableDestroy = require('server-destroy')
 var SocketServer = require('socket.io')
 var server = null
 var io = null
-var socketlist = []
+
+var pushover = require('pushover')
+var repos = pushover('/Users/dickchoi/Code/pushover/example')
 
 var turnOn = function () {
   var app = express()
@@ -36,27 +38,58 @@ var turnOn = function () {
   server = app.listen(8080)
   enableDestroy(server)
 
+  // SOCKET.IO
+  var sockets = []
+  var clients = {}
   io = SocketServer(server)
 
   io.on('connection', function (socket) {
     console.log('somebody connected')
+    sockets.push(socket)
 
-    socket.emit('news', { hello: 'world' })
+    socket.emit('news', {msg: 'welcome'})
 
     socket.on('msg', function (data) {
       console.log(data)
     })
+
+    socket.on('registerName', function (data) {
+      console.log('name registered')
+      clients[socket.id] = data.name
+      socket.emit('userUpdated', clients)
+    })
+
+    socket.on('disconnect', function () {
+      delete clients[socket.id]
+      sockets.splice(sockets.indexOf(socket), 1)
+    })
+
+  })
+
+  // PUSH OVER
+  repos.on('push', function (push) {
+    console.log('push ' + push.repo + '/' + push.commit + ' (' + push.branch + ')'
+    )
+    push.accept()
+  })
+
+  repos.on('fetch', function (fetch) {
+    console.log('fetch ' + fetch.repo + '/' + fetch.commit)
+    fetch.accept()
+  })
+
+  app.use('/repos', function (req, res) {
+    req.pause()
+    repos.handle(req, res)
+    req.resume()
   })
 
 }
 var turnOff = function () {
   if (server) {
-    socketlist = []
     server.destroy()
     server = null
-    io = null
   }
-
   console.log('Server closed')
 }
 
