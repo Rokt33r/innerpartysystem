@@ -1,6 +1,6 @@
 angular.module('ips')
-  .controller('AppController', function (Server, $scope) {
-    var app = this
+  .controller('HomeController', function (Server, $scope, $state) {
+    var vm = this
     $scope.isServerOn = false
 
     $scope.$on('serverTurnedOn', function () {
@@ -16,5 +16,16 @@ angular.module('ips')
         $scope.isServerOn = false
       })
     })
-    
+
+    vm.turnOnServer = function () {
+      Server.turnOn()
+    }
+    vm.turnOffServer = function () {
+      Server.turnOff()
+    }
+    vm.checkStatus = function () {
+      $scope.isServerOn = Server.checkStatus()
+      console.log('Server status :', $scope.isServerOn)
+    }
+
   })

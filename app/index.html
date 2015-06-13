@@ -6,17 +6,18 @@
   </head>
   <body>
     <div ng-controller="AppController as app">
-      <button ng-if="!isServerOn" type="button" name="button" ng-click="app.turnOnServer()">Create Party</button>
-      <button ng-if="isServerOn" type="button" name="button" ng-click="app.turnOffServer()">Terminate Party</button>
-      <button type="button" name="button">Enter Party</button>
-      <button type="button" name="button" ng-click="app.checkStatus()">Check Status</button>
+      <div ui-view></div>
     </div>
 
     <script src="vendor/angular.js"></script>
+    <script src="vendor/angular-ui-router.js"></script>
+    <script src="vendor/socket.io.js"></script>
 
     <script src="app.js"></script>
+    <script src="config/states.js"></script>
     <script src="services/Server.js"></script>
     <script src="controllers/AppController.js"></script>
+    <script src="controllers/states/HomeController.js"></script>
 
   </body>
 </html>

@@ -1,3 +1,4 @@
-angular.module('ips', [
+angular.module('ips', ['ui.router'])
+  .run(function () {
 
-])
+  })

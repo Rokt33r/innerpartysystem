@@ -33,6 +33,17 @@ var turnOn = function () {
   server = app.listen(8080)
   enableDestroy(server)
   console.log('server ready!!')
+
+  var io = require('socket.io')(server);
+
+  io.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+
+
 }
 var turnOff = function () {
   if (server) {

@@ -1,0 +1,4 @@
+<button ng-if="!isServerOn" type="button" name="button" ng-click="app.turnOnServer()">Create Party</button>
+<button ng-if="isServerOn" type="button" name="button" ng-click="app.turnOffServer()">Terminate Party</button>
+<button type="button" name="button">Enter Party</button>
+<button type="button" name="button" ng-click="app.checkStatus()">Check Status</button>
