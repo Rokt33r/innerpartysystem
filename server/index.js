@@ -4,7 +4,10 @@ var morgan = require('morgan')
 var bodyParser = require('body-parser')
 var methodOverride = require('method-override')
 var enableDestroy = require('server-destroy')
+var SocketServer = require('socket.io')
 var server = null
+var io = null
+var socketlist = []
 
 var turnOn = function () {
   var app = express()
@@ -32,23 +35,26 @@ var turnOn = function () {
 
   server = app.listen(8080)
   enableDestroy(server)
-  console.log('server ready!!')
 
-  var io = require('socket.io')(server);
+  io = SocketServer(server)
 
   io.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
+    console.log('somebody connected')
 
+    socket.emit('news', { hello: 'world' })
+
+    socket.on('msg', function (data) {
+      console.log(data)
+    })
+  })
 
 }
 var turnOff = function () {
   if (server) {
+    socketlist = []
     server.destroy()
     server = null
+    io = null
   }
 
   console.log('Server closed')

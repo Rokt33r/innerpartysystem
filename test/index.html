@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="ips">
+  <head>
+    <meta charset="utf-8">
+    <title>INNER PARTY SYSTEM!!</title>
+  </head>
+  <body>
+    <div ng-controller="AppController as app">
+      <div ui-view></div>
+    </div>
+
+    <script src="vendor/socket.io.js"></script>
+    <script>
+
+      socket = io.connect('http://localhost:8080');
+
+      socket.on('news', function (data) {
+        console.log(data)
+        socket.emit('msg', { my: 'data' })
+      })
+    </script>
+  </body>
+</html>

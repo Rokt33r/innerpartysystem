@@ -1,5 +1,5 @@
 angular.module('ips')
-  .controller('AppController', function (Server, $scope) {
+  .controller('AppController', function (Server, $scope, $state) {
     var app = this
     $scope.isServerOn = false
 
@@ -8,6 +8,7 @@ angular.module('ips')
       $scope.$apply(function () {
         $scope.isServerOn = true
       })
+      $state.go('party-host')
     })
 
     $scope.$on('serverTurnedOff', function () {
@@ -15,6 +16,7 @@ angular.module('ips')
       $scope.$apply(function () {
         $scope.isServerOn = false
       })
+      $state.go('home')
     })
-    
+
   })
