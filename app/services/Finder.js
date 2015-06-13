@@ -4,6 +4,7 @@ var dialog = remote.require('dialog')
 angular.module('ips')
   .factory('Finder', function () {
     var rootDir = null
+    var watcher = null
 
     var getRootDir = function () {
       return rootDir
@@ -12,9 +13,10 @@ angular.module('ips')
     var selectRootDir = function () {
       return new Promise(function (resolve, reject) {
         dialog.showOpenDialog({
-          properties: ['openFile', 'openDirectory']
+          properties: ['openDirectory', 'createDirectory']
         }, function (filename) {
-          resolve(filename)
+          ipc.send('watchFile', filename[0])
+          resolve(filename[0])
         })
       })
     }

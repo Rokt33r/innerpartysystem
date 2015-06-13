@@ -9,7 +9,7 @@ var server = null
 var io = null
 
 var pushover = require('pushover')
-var repos = pushover('/Users/dickchoi/Code/pushover/example')
+var repos = pushover(__dirname + '/../repos')
 
 var turnOn = function () {
   var app = express()
@@ -70,6 +70,9 @@ var turnOn = function () {
   repos.on('push', function (push) {
     console.log('push ' + push.repo + '/' + push.commit + ' (' + push.branch + ')'
     )
+    sockets.forEach(function (socket) {
+      socket.emit('pushed')
+    })
     push.accept()
   })
 
@@ -78,7 +81,7 @@ var turnOn = function () {
     fetch.accept()
   })
 
-  app.use('/repos', function (req, res) {
+  app.use('/git', function (req, res) {
     req.pause()
     repos.handle(req, res)
     req.resume()

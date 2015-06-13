@@ -1,3 +1,5 @@
+var ipc = require('ipc')
+
 angular.module('ips')
   .factory('Socket', function (hostname) {
     var socket = null
@@ -12,6 +14,11 @@ angular.module('ips')
 
       socket.on('userUpdated', function (users) {
         console.log(users)
+      })
+
+      socket.on('pushed', function (){
+        console.log('pushing detected!! ready to PULL!!')
+        ipc.send('requestPull')
       })
     }
 

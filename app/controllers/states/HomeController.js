@@ -1,7 +1,7 @@
 angular.module('ips')
   .controller('HomeController', function (Server, $scope, $state) {
     var vm = this
-    
+
     vm.turnOnServer = function () {
       Server.turnOn()
     }

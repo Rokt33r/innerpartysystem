@@ -7,7 +7,9 @@ angular.module('ips')
     if (vm.rootDir == null) {
       Finder.selectRootDir()
         .then(function (filename) {
-          vm.rootDir = filename
+          $scope.$apply(function () {
+            vm.rootDir = filename
+          })
         })
     }
 
