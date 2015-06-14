@@ -1,14 +1,16 @@
-<div class="">
+<div class="home-state">
+
+  <div class="">
   <button ng-if="!isServerOn" type="button" name="button" ng-click="vm.turnOnServer()">Create Party</button>
   <button ng-if="isServerOn" type="button" name="button" ng-click="vm.turnOffServer()">Terminate Party</button>
-</div>
+  </div>
 
-<div class="">
-  <input type="text" ng-model="vm.address">
+  <div class="">
+  <input placeholder="local address..." type="text" ng-model="vm.address"><br>
   <button type="button" name="button" ng-click="vm.joinParty()">Enter Party</button>
-</div>
-<button type="button" name="button" ng-click="vm.checkStatus()">Check Status</button>
-
-<p>
+  </div>
+  <p>
   <span>Current Wifi name : </span><span ng-bind="vm.currentWifiName"></span>
-</p>
+  </p>
+
+</div>
