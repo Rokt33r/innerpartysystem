@@ -12,5 +12,11 @@ angular.module('ips')
       $scope.isServerOn = Server.checkStatus()
       console.log('Server status :', $scope.isServerOn)
     }
-
+    vm.requestCurrentWifiName = function () {
+      vm.currentWifiName = Server.requestCurrentWifiName()
+    }
+    vm.joinParty = function () {
+      $state.go('party-guest', {address: vm.address})
+    }
+    vm.requestCurrentWifiName()
   })

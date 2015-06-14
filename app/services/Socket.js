@@ -4,6 +4,9 @@ angular.module('ips')
   .factory('Socket', function (hostname) {
     var socket = null
 
+    var updateHost = function (url) {
+      ipc.send('updateHost', url)
+    }
     var connect = function (url) {
       socket = io.connect('http://' + url + ':8080', {'forceNew': true})
       socket.on('news', function (data) {
@@ -38,6 +41,7 @@ angular.module('ips')
     return {
       connect: connect,
       disconnect: disconnect,
-      sayHello: sayHello
+      sayHello: sayHello,
+      updateHost: updateHost
     }
   })

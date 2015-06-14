@@ -1,6 +1,54 @@
 <h1>Let's Party!!!</h1>
 <p>
+  Current Wifi : <span ng-bind="vm.currentWifiName"></span>
+</p>
+<p>
+  Current Ip : <span ng-bind="vm.currentIp"></span>
+</p>
+<p>
   Root Directory : <span ng-bind="vm.rootDir"></span>
 </p>
 <button ng-click="vm.turnOffServer()">Terminate Party</button>
-<button type="button" name="button" ng-click="vm.sayHello()">Say Hello!</button>
+<button ng-click="isShow = !isShow">toggle Repo Store</button>
+<div ng-show="isShow">
+  <h1>Create Global Repo</h1>
+  <form>
+
+    <div>
+      <label>Repo name</label>
+      <input type="text" ng-model="vm.name">
+    </div>
+    <div>
+      <label>E-mail</label>
+      <input type="text" ng-model="vm.email">
+    </div>
+    <hr>
+    <div>
+      <label>Card Number</label>
+      <input type="text" ng-model="vm.number">
+    </div>
+    <div>
+      <label>Expire Month</label>
+      <input type="text" ng-model="vm.expire_month">
+    </div>
+    <div>
+      <label>Expire Year</label>
+      <input type="text" ng-model="vm.expire_year">
+    </div>
+    <div>
+      <label>CVV</label>
+      <input type="text" ng-model="vm.cvv2">
+    </div>
+    <div>
+      <label>Firstname</label>
+      <input type="text" ng-model="vm.first_name">
+    </div>
+    <div>
+      <label>Lastname</label>
+      <input type="text" ng-model="vm.last_name">
+    </div>
+    <div>
+      <button type="submit">Purchase</button>
+    </div>
+  </form>
+</div>

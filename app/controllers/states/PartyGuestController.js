@@ -1,5 +1,5 @@
 angular.module('ips')
-  .controller('PartyHostController', function (Server, $scope, Socket, $window, Finder) {
+  .controller('PartyGuestController', function ($state, Finder, Socket, Server, $scope) {
     var vm = this
 
     vm.rootDir = Finder.getRootDir()
@@ -13,30 +13,21 @@ angular.module('ips')
         })
     }
 
-    vm.turnOffServer = function () {
-      Server.turnOff()
+    vm.leaveParty = function () {
       Socket.disconnect()
+      $state.go('home')
     }
-    vm.checkStatus = function () {
-      $scope.isServerOn = Server.checkStatus()
-    }
-    vm.sayHello = function () {
-      Socket.sayHello()
-    }
+
     vm.requestCurrentWifiName = function () {
       vm.currentWifiName = Server.requestCurrentWifiName()
     }
     vm.requestCurrentWifiName()
 
-    vm.requestCurrentIp = function () {
-      vm.currentIp = Server.requestCurrentIp()
-    }
-    vm.requestCurrentIp()
-
     vm.updateHost = function () {
-      Socket.updateHost('localhost')
+      Socket.updateHost($state.params.address)
     }
+    vm.currentIp = $state.params.address
     vm.updateHost()
 
-    Socket.connect('localhost')
+    Socket.connect($state.params.address)
   })

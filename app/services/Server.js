@@ -9,6 +9,14 @@ angular.module('ips')
       ipc.send('turnOffServer')
     }
 
+    var requestCurrentWifiName = function () {
+      return ipc.sendSync('requestCurrentWifiName')
+    }
+
+    var requestCurrentIp = function () {
+      return ipc.sendSync('requestCurrentIp')
+    }
+
     var checkStatus = function () {
       return ipc.sendSync('checkServerStatus')
     }
@@ -24,6 +32,8 @@ angular.module('ips')
     return {
       turnOn: turnOn,
       turnOff: turnOff,
-      checkStatus: checkStatus
+      checkStatus: checkStatus,
+      requestCurrentWifiName: requestCurrentWifiName,
+      requestCurrentIp: requestCurrentIp
     }
   })
